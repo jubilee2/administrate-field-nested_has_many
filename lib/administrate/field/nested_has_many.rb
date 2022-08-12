@@ -91,7 +91,11 @@ module Administrate
       end
 
       private
-
+      
+      def associated_dashboard
+        "#{associated_class_name}NestDashboard".constantize.new || "#{associated_class_name}Dashboard".constantize.new
+      end
+      
       def new_resource
         @new_resource ||= associated_class.new
         @new_resource[foreign_key] = resource.send(primary_key)
